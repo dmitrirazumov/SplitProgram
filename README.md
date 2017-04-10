@@ -1,2 +1,2 @@
 # SplitProgram
-Split
+Вариант 12 -- Split
