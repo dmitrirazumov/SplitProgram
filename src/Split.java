@@ -57,16 +57,16 @@ public class Split {
     }
 
     /*private void processingFlags(String[] args) {
-        //flag "-o"
+        /flag "-o"
         if (inputFile == null) inputFile = "x";
         if (inputFile == "-") inputFile = inputFile;
 
-        //flag "-d"
+        /flag "-d"
         boolean nameFiles;
         if (changeName == null) nameFiles = false;
         else nameFiles = true;
 
-        //flag "-l"
+        /flag "-l"
         if (fileSizeString == null) fileSizeString = 100;
     }*/
 
