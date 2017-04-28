@@ -4,7 +4,7 @@ import java.io.File
 
 class Tests {
 
-
+    //Проверяем правильность выходного файла
     private fun assertFileContent(name: String, expectedContent: String) {
         val file = File(name)
         val content = file.readLines().joinToString("\n")
@@ -13,35 +13,38 @@ class Tests {
 
     @Test
     fun toFile() {
-        toFile("temp.txt", "line" + "\n" + "line2", 1)
-        assertFileContent("temp.txt", "line" + "\n" + "line2")
-        File("temp.txt").delete()
+        toFile("temp", "line" + "\n" + "line2", 1)
+        assertFileContent("temp1", "line" + "\n" + "line2")
+        File("temp1").delete()
     }
 
     @Test
-    fun fileQuantitu() {
+    fun fileQuantity() {
         val file = File.createTempFile("temp", ".txt", File("C:/Users/bigbo/IdeaProjects/Split"))
-        file.writeText("Мама" + "\n" + "мыла" + "\n" + "раму")
-        fileQuantity(file.canonicalPath, "result.txt", 1)
-        assertFileContent("result.txt", "Мама" + "\n" + "мыла" + "\n" + "раму")
+       file.writeText("Мама" + "\n" + "мыла" + "\n" + "раму")
+        fileQuantity(file.canonicalPath, "result", 1)
+        assertFileContent("result0", "Мама" + "\n" + "мыла" + "\n" + "раму")
         File(file.canonicalPath).deleteOnExit()
-        File("result.txt").deleteOnExit()
+        File("result0").deleteOnExit()
     }
 
     @Test
     fun fileSizeSymbolTest() {
         val file = File.createTempFile("temp", ".txt", File("C:/Users/bigbo/IdeaProjects/Split"))
-        file.writeText("Мама" + "\n" + "мыла" + "\n" + "раму")
+        file.writeText("Mum" + "\n" + "washed" + "\n" + "frame")
         try {
             fileSizeSymbol(file.canonicalPath, "file", 2)
 
         } finally {
+            for (i in 0..6) {
+                File("file" + i).deleteOnExit()
+            }
             File(file.canonicalFile.toString()).deleteOnExit()
         }
     }
 
     @Test
-    fun fileSizeStriing() {
+    fun fileSizeString() {
 
         val file = File.createTempFile("temp", ".txt", File("C:/Users/bigbo/IdeaProjects/Split"))
         file.writeText("Мама" + "\n" + "мыла" + "\n" + "раму")

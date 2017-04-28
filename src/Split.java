@@ -5,10 +5,8 @@ import org.kohsuke.args4j.Option;
 
 public class Split {
 
-    // !!! Не знаю как вызвать функцию написанную на Kotlin'е из класса Java, написал М. И. Глухих. Позже доделаю !!!
-
     @Option(name = "-o", metaVar = "EncodingI", required = false, usage = "Input file encoding")
-    public String outputFile;
+    private String outputFile;
 
     @Option(name = "-d", metaVar = "EncodingI", required = false, usage = "Input file encoding")
     private static Boolean changeName;
@@ -27,6 +25,7 @@ public class Split {
 
 
     public static void main(String[] args) {
+
         new Split().launch(args);
     }
 
@@ -50,12 +49,14 @@ public class Split {
             System.out.println("Error");
         if (outputFile == null) outputFile = "x";
         if (outputFile == "-") outputFile = inputFile;
-        if (changeName = null) changeName = false;
-        // if (fileSizeString != null) AddHepler.fileSizeString(inputFile);
-        // !!! Не знаю как вызвать функцию написанную на Kotlin'е из класса Java, написал М. И. Глухих. Позже доделаю !!!
+        if (changeName == null) changeName = false;
+        if (fileSizeString != null) AddHelperKt.fileSizeString(inputFile, outputFile, fileSizeString);
+        if (fileSizeSymbol != null) AddHelperKt.fileSizeSymbol(inputFile, outputFile, fileSizeSymbol);
+        if (fileQuantity != null) AddHelperKt.fileQuantity(inputFile, outputFile, fileQuantity);
+
     }
 
-    private void processingFlags(String[] args) {
+    /*private void processingFlags(String[] args) {
         //flag "-o"
         if (inputFile == null) inputFile = "x";
         if (inputFile == "-") inputFile = inputFile;
@@ -67,7 +68,7 @@ public class Split {
 
         //flag "-l"
         if (fileSizeString == null) fileSizeString = 100;
-    }
+    }*/
 
     public static Boolean getChangeName() {
         return changeName;

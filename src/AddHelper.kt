@@ -21,9 +21,10 @@ fun fileSizeSymbol(inputFile: String, outputFile: String, fileSizeSymbol: Int) {
     var k = 0
     var m = 0
     for (byte in File(inputFile).readBytes()) {
-
-        result.append((byte + 76).toChar().toString())
-        k += 1
+        if (byte.toInt() != 10) {
+            result.append(byte.toChar())
+            k += 1
+        }
         if (k == fileSizeSymbol) {
             toFile(outputFile, result.toString(), m)
             m += 1
@@ -37,18 +38,22 @@ fun fileQuantity(inputFile: String, outputFile: String, fileQuantity: Int) {
     val result = StringBuilder()
     var k = 0
     var m = 0
+    var f = 0
     for (line in File(inputFile).readLines()) {
         result.append(line + "\n")
         k += 1
-        if (k == 100) {
+        if (k == 100 && f < fileQuantity) {
             toFile(outputFile, result.toString(), m)
             m += 1
+            f += 1
             k = 0
+            result.delete(0, result.length)
         }
     }
-    if (k < 100) {
+    if (k < 100 && k != 0 && f < fileQuantity) {
         toFile(outputFile, result.toString(), m)
         m += 1
+        f += 1
     }
 }
 
